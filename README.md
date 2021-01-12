@@ -34,7 +34,7 @@ the graph algorithms class includes functions such as:
 * conected_components-returns a list of all the connected components.
 * plot_graph-plots the graph
 
-### part 3
+### part 3:
 in the 3 part of the project, we make a comparison between the run times of our python project to a previous java project .and also to networkX graph algorithms.
 
 ### particulars functions that based on an external code:
