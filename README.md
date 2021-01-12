@@ -1,6 +1,8 @@
+# directed weighted graph
+
 This repository represents a structure of a directed weighted graph, with some algorithms that can be used on the graph. 
 
-# ## uses of the program:
+### uses of the program:
 can be used as a GPS, can contain many city locations, and calculate the shortest path from one destination to another
 can be used as a shape creator, create mane nodes and edges for a shape, and calculate the shortest path from one node to another. 
 Part 1:
@@ -8,7 +10,7 @@ structure:
 the graph is built from vertices that are represented by the NodeGraph class. 
 . the graph is represented by the DiGraph class that inherits from the graph interface. the algorithms of the graph are represented by the GraphAlgo, which inherits from the GraphAlgointerface.
 
-# the graph:
+### the graph:
 the graph class includes functions such as:
 * add node - add a new node to the graph
 * add_edge - add a new edge to the graph between two vertices
@@ -21,7 +23,7 @@ the graph class includes functions such as:
 * v_size-returns the number of vertices in the graph
 * get_mc-return the number of changes computed on the graph
  
-# the graph algorithms :
+### the graph algorithms :
 the graph algorithms class includes functions such as:
 * initiate_graph - initiate the graph algorithm to point on a graph
 * is connected - return true if all of the graph vertices have a path from one to another.
@@ -32,11 +34,11 @@ the graph algorithms class includes functions such as:
 * conected_components-returns a list of all the connected components.
 * plot_graph-plots the graph
 
-# particulars functions that based on an external code:
+### particulars functions that based on an external code:
 shortest path Dist and shortest Path based on the "Dijkstra's " algorithm.
 connected components make use of the BFS algorithm.
 
-# links:
+### links:
 Dijkstra's algorithm: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 breadth-first search algorithm: https://en.wikipedia.org/wiki/Breadth-first_search
 
