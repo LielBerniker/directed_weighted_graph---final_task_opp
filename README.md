@@ -1,5 +1,5 @@
 This repository represents a structure of a directed weighted graph, with some algorithms that can be used on the graph. 
-uses of the program:
+#uses of the program:
 can be used as a GPS, can contain many city locations, and calculate the shortest path from one destination to another
 can be used as a shape creator, create mane nodes and edges for a shape, and calculate the shortest path from one node to another. 
 Part 1:
