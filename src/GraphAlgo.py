@@ -6,7 +6,6 @@ from src.DiGraph import DiGraph
 from src.GraphAlgoInterface import GraphAlgoInterface
 import matplotlib.pyplot as plt
 from matplotlib.patches import ConnectionPatch
-import random
 
 
 class GraphAlgo(GraphAlgoInterface):

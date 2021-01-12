@@ -272,12 +272,12 @@ class MyTestCase(unittest.TestCase):
 
 
     def test_all_graphs_time(self):
-        graph1 = "G_10_80_0"
-        graph2 = "G_100_800_0"
-        graph3 = "G_1000_8000_0"
-        graph4 = "G_10000_80000_0"
-        graph5 = "G_20000_160000_0"
-        graph6 = "G_30000_240000_0"
+        graph1 = "G_10_80_1"
+        graph2 = "G_100_800_1"
+        graph3 = "G_1000_8000_1"
+        graph4 = "G_10000_80000_1"
+        graph5 = "G_20000_160000_1"
+        graph6 = "G_30000_240000_1"
         test_time_for_functions(graph1,1,3)
         test_time_for_functions(graph2,1,3)
         test_time_for_functions(graph3,1,3)
