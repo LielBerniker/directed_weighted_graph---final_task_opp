@@ -5,7 +5,8 @@ from src.NodeGraph import NodeGraph
 class DiGraph(GraphInterface):
     global MC
     global graph_nodes
-    global graph_edges
+    global graph_edges_out
+    global graph_edges_in
     global edge_counter
 
     def __init__(self):

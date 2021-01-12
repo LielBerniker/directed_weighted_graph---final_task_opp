@@ -195,36 +195,23 @@ class GraphAlgo(GraphAlgoInterface):
                 all_components.append(node_component)
         return all_components
 
-    def find_position(self, src: int, size: int) -> tuple:
-        avg_x = 0
-        avg_y = 0
-        if size > 100:
-            rand = (random.uniform(0, size), random.uniform(0, size))
+    def find_position(self,side: int, size: int) -> tuple:
+        if side%4 == 0:
+            x_val = side
+            y_val = size
+        elif side%4 == 1:
+            x_val = size
+            y_val = side
+        elif side%4 == 2:
+            x_val = side
+            y_val = 0
         else:
-            rand = (random.uniform(0, 100), random.uniform(0, 100))
-        n_size = len(self.graph1.all_out_edges_of_node(src)) + len(self.graph1.all_in_edges_of_node(src))
-        if n_size < 3:
-            return rand
-        for neighbor in self.graph1.all_in_edges_of_node(src).keys():
-            n_pos = self.graph1.get_node(neighbor).getPosition()
-            if n_pos is not None:
-                avg_x = avg_x + n_pos[0]
-                avg_y = avg_y + n_pos[1]
-            else:
-                n_size = n_size - 1
-        for neighbor in self.graph1.all_out_edges_of_node(src).keys():
-            n_pos = self.graph1.get_node(neighbor).getPosition()
-            if n_pos is not None:
-                avg_x = avg_x + n_pos[0]
-                avg_y = avg_y + n_pos[1]
-            else:
-                n_size = n_size - 1
-        if n_size == 0:
-            return rand
-        elif avg_y == 0 and avg_x == 0:
-            return rand
-        else:
-            return (avg_x / n_size, avg_y / n_size)
+            x_val = 0
+            y_val = side
+
+
+
+        return (x_val,y_val)
 
     def plot_graph(self) -> None:
         """
@@ -234,39 +221,41 @@ class GraphAlgo(GraphAlgoInterface):
         @return: None
         """
         all_nodes = {}
+        side = 0
         fig, ax = plt.subplots()
         size_of_nodes = self.graph1.v_size()
         for node_id in self.graph1.graph_nodes.keys():
             if all_nodes.get(node_id) is None:
                 n_pos = self.graph1.get_node(node_id).getPosition()
                 if n_pos is None:
-                    p1 = self.find_position(node_id, size_of_nodes)
+                    p1 = self.find_position(side,size_of_nodes)
+                    side = side +1
                 else:
-                    p1 = n_pos
+                    p1 = (float(n_pos[0]),float(n_pos[1]))
                 all_nodes[node_id] = p1
-                plt.plot(p1[0], p1[1], 'o', color='red',
-                         markersize=7, linewidth=7,
-                         markerfacecolor='blue',
-                         markeredgecolor='black',
-                         markeredgewidth=1)
+                plt.plot(p1[0],p1[1],'o',color='b')
+                ax.annotate(node_id, p1,
+                            color='black',
+                            fontsize=12)
 
             for neighbor in self.graph1.all_out_edges_of_node(node_id).keys():
                 if all_nodes.get(neighbor) is None:
                     neighbor_pos = self.graph1.get_node(neighbor).getPosition()
                     if neighbor_pos is None:
-                        p2 = self.find_position(neighbor, size_of_nodes)
+                        p2 = self.find_position(side,size_of_nodes)
+                        side = side +1
                     else:
-                        p2 = neighbor_pos
+                        p2 = (float(neighbor_pos[0]),float(neighbor_pos[1]))
                     all_nodes[neighbor] = p2
-                    plt.plot(p2[0], p2[1], 'o', color='red',
-                             markersize=7, linewidth=7,
-                             markerfacecolor='blue',
-                             markeredgecolor='black',
-                             markeredgewidth=1)
+                    plt.plot(p2[0], p2[1], 'o',color='b')
+                    ax.annotate(neighbor, p2,
+                                color='black',
+                                fontsize=12)
+
                 n_pos = all_nodes[node_id]
-                p1 = (n_pos[0], n_pos[1])
                 neighbor_pos = all_nodes[neighbor]
-                p2 = (neighbor_pos[0], neighbor_pos[1])
-                con = ConnectionPatch(p1, p2, "data", "data", arrowstyle="-|>", mutation_scale=20, fc="w")
+                con = ConnectionPatch(n_pos, neighbor_pos, "data", "data", arrowstyle="-|>", mutation_scale=15, fc="r")
                 ax.add_artist(con)
         plt.show()
+        print(all_nodes)
+

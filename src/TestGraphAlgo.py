@@ -75,7 +75,7 @@ def load_to_networkx(j_graph:nx.Graph,file_name: str):
 def test_time_for_networkx(graph_name:str,src:int,dest:int):
     import time
     start_time = time.time()
-    file='../data/jasons/' + graph_name + '.json'
+    file='../data/' + graph_name + '.json'
     g=nx.Graph()
     load_to_networkx(g,file)
     start_time = time.time()
@@ -93,7 +93,7 @@ def test_time_for_networkx(graph_name:str,src:int,dest:int):
 def test_time_for_functions(graph_name: str, src: int, dst: int):
     import time
     algo = GraphAlgo()
-    algo.load_from_json('../data/jasons/' + graph_name + '.json')
+    algo.load_from_json('../data/' + graph_name + '.json')
     start_time = time.time()
     algo.connected_component(src)
     connected_component_run_time = time.time() - start_time
@@ -105,6 +105,7 @@ def test_time_for_functions(graph_name: str, src: int, dst: int):
     shortest_path_run_time = time.time() - start_time
     all_info = "\nsize of graph: " +str(graph_name) + "\nfunctions run time: " + "\nconnected component function run time: " + str(connected_component_run_time) + \
                "\nconnected components function run time: " + str(connected_components_run_time) + "\nshortest path function run time: " + str(shortest_path_run_time)
+    algo.plot_graph()
     print(all_info)
 
 
@@ -298,10 +299,6 @@ class MyTestCase(unittest.TestCase):
         test_time_for_networkx(graph5, 0, 9)
         test_time_for_networkx(graph6, 0, 9)
 
-
-    def test_plot_test(self):
-        algo = GraphAlgo()
-        algo.load_from_json('../src/data/G_10_80_0.json')
 
 
 
