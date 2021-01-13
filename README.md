@@ -34,7 +34,7 @@ the graph algorithms class includes functions such as:
 * plot_graph-plots the graph
 
 ### part 3:
-in the 3 part of the project, we make a comparison between the run times of our python project to a previous java project .and also to networkX graph algorithms.
+in the paer 3 of the project, we make a comparison between the run times of our python project to a previous java project .and also to networkX graph algorithms.
 
 ### particulars functions that based on an external code:
 shortest path Dist and shortest Path based on the "Dijkstra's " algorithm.                                                                                                   connected components make use of the BFS algorithm.
@@ -43,4 +43,4 @@ shortest path Dist and shortest Path based on the "Dijkstra's " algorithm.      
 Dijkstra's algorithm: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 breadth-first search algorithm: https://en.wikipedia.org/wiki/Breadth-first_search
 
-
+this project created by LielBerniker and Rivka Strilits
