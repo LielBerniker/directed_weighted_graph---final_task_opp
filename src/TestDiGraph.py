@@ -4,6 +4,9 @@ from src.DiGraph import DiGraph
 
 
 def create_graph():
+    """
+    create a graph version 1
+    """
     graph1 = DiGraph()
     for i in range(10):
        graph1.add_node(i)
@@ -11,7 +14,9 @@ def create_graph():
 
 
 class MyTestCase(unittest.TestCase):
-
+    """
+    test the adding of a node to the graph
+    """
     def test_add_node(self):
         graph1 = create_graph()
         self.assertEqual(10, graph1.v_size())
@@ -25,6 +30,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(13, graph1.v_size())
 
     def test_add_edge(self):
+        """
+        test for adding an edge to the graph
+        """
         graph1 = create_graph()
         self.assertEqual(0, graph1.e_size())
         graph1.add_edge(20, 30, 3434.5)
@@ -41,6 +49,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(6, graph1.e_size())
 
     def test_remove_edge(self):
+        """
+        test for removing an edge in the graph
+        """
         graph1 = create_graph()
         self.assertEqual(0, graph1.e_size())
         check = graph1.remove_edge(9, 8)
@@ -58,6 +69,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(0, graph1.e_size())
 
     def test_remove_node(self):
+        """
+        test for removing a node in the graph.
+        """
         graph1 = create_graph()
         self.assertEqual(10, graph1.v_size())
         check = graph1.remove_node(11)
@@ -85,6 +99,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(0, graph2.e_size())
 
     def test_in_and_out_edges(self):
+        """
+        test the edges that goes out from a graph and the edges that go in.
+        """
         graph1 = create_graph()
         for key in range(10):
             self.assertEqual(0, len(graph1.all_out_edges_of_node(key)))
@@ -105,6 +122,9 @@ class MyTestCase(unittest.TestCase):
         self.assertFalse(9 in graph1.all_in_edges_of_node(8).keys())
 
     def test_vertices_size(self):
+        """
+        test for the number of vertices in the graph
+        """
         graph1 = create_graph()
         self.assertEqual(10, graph1.v_size())
         graph1.add_node(6)
@@ -117,6 +137,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(90, graph1.v_size())
 
     def test_edges_size(self):
+        """
+        test for the number of edges in the graph
+        """
         graph1 = create_graph()
         self.assertEqual(0, graph1.e_size())
         graph1.add_edge(1000, 3000, 1.4)
@@ -132,6 +155,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(48, graph1.e_size())
 
     def test_MC(self):
+        """
+        test for the number of changes in the graph
+        """
         graph1 = create_graph()
         self.assertEqual(10, graph1.get_mc())
         graph1.add_node(3)
@@ -161,6 +187,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(52, graph1.get_mc())
 
     def test_get_all_vertices(self):
+        """
+        test for the function that returns all of the vertices
+        """
         graph1 = create_graph()
         self.assertEqual(10, graph1.v_size())
         all_v = graph1.get_all_v()
@@ -169,7 +198,3 @@ class MyTestCase(unittest.TestCase):
             self.assertTrue(check)
         self.assertFalse(30 in all_v.keys())
 
-    def test_forme(self):
-        graph1 = create_graph()
-        f = graph1.get_node(40)
-        mvmdvdvdvfv = 33535

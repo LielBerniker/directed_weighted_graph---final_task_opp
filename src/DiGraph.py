@@ -3,13 +3,19 @@ from src.NodeGraph import NodeGraph
 
 
 class DiGraph(GraphInterface):
-    global MC
-    global graph_nodes
-    global graph_edges_out
-    global graph_edges_in
-    global edge_counter
+    """
+    this class represent a directed weighted graph
+    """
+    global MC    # count the number of changes in the graph
+    global graph_nodes   # represent all of the vertices in the graph
+    global graph_edges_out    # represent all of the edges that go out from a vertices
+    global graph_edges_in     # represent all of the edges that go in a vertices
+    global edge_counter    # count the number of edges in the graph
 
     def __init__(self):
+        """
+        a constructor to the graph, reset the MC, and edge counter
+        """
         self.MC = 0
         self.graph_nodes = {}
         self.graph_edges_in = {}
@@ -40,15 +46,31 @@ class DiGraph(GraphInterface):
         return self.graph_edges_out[src][dst]
 
     def get_all_edges_in(self) -> dict:
+        """
+        Returns the dict of edges that go in
+        :return: Returns the dict of edges that go in
+        """
         return self.graph_edges_in
 
     def get_all_edges_out(self) -> dict:
+        """
+        Returns the dict of edges that go out
+        :return: Returns the dict of edges that go out
+        """
         return self.graph_edges_out
 
     def set_all_edges_in(self, in_edges: dict):
+        """
+        set the edges that go in other nodes in the graph
+        @param in_edges: The new dict of edges in
+        """
         self.graph_edges_in = in_edges
 
     def set_all_edges_out(self, out_edges: dict):
+        """
+        set the edges that go out from nodes in the graph
+        @param out_edges: The new dict of edges out
+        """
         self.graph_edges_out = out_edges
 
     def v_size(self) -> int:
@@ -74,13 +96,17 @@ class DiGraph(GraphInterface):
         @param weight: The weight of the edge
         @return: True if the edge was added successfully, False o.w.
         Note: If the edge already exists or one of the nodes dose not exists the functions will do nothing
+        and if the edge already exists but the new edge has different edge ,
+         change the weight and increase the changes in the graph
         """
+        # cheks in the two nodes in the graph and if the weight is not negative
         if id1 not in self.graph_nodes.keys() or id2 not in self.graph_nodes.keys():
             return False
         if weight < 0:
             return False
         if id2 == id1:
             return False
+        # checks if the edge already exists
         if id1 in self.graph_edges_out.keys():
             if id2 in self.graph_edges_out[id1].keys():
                 if self.graph_edges_out[id1][id2] != weight:
@@ -115,6 +141,7 @@ class DiGraph(GraphInterface):
         @return: True if the node was added successfully, False o.w.
         Note: if the node id already exists the node will not be added
         """
+        # checks if the node is in the graph
         if node_id not in self.graph_nodes.keys():
             node_temp = NodeGraph(node_id, pos)
             self.graph_nodes[node_id] = node_temp
@@ -133,10 +160,12 @@ class DiGraph(GraphInterface):
         if node_id not in self.graph_nodes.keys():
             return False
         edge_out = self.all_out_edges_of_node(node_id)
+        # go over the edges that go out from the node
         for key in edge_out.keys():
             del self.graph_edges_in[key][node_id]
             self.edge_counter = self.edge_counter - 1
         edge_in = self.all_in_edges_of_node(node_id)
+        # go over the edges that go in from the node
         for key2 in edge_in.keys():
             del self.graph_edges_out[key2][node_id]
             self.edge_counter = self.edge_counter - 1
@@ -156,8 +185,11 @@ class DiGraph(GraphInterface):
         @return: True if the edge was removed successfully, False o.w.
         Note: If such an edge does not exists the function will do nothing
         """
+
+        # check if the two nodes are in the graph
         if node_id1 not in self.graph_nodes.keys() or node_id2 not in self.graph_nodes.keys():
             return False
+        # check if there is a edge from node_id1 to node_id2
         if node_id1 not in self.graph_edges_out.keys():
             return False
         if node_id2 not in dict(self.graph_edges_out[node_id1]).keys():
@@ -184,7 +216,8 @@ class DiGraph(GraphInterface):
         return self.graph_edges_in[id1]
 
     def all_out_edges_of_node(self, id1: int) -> dict:
-        """return a dictionary of all the nodes connected from node_id , each node is represented using a pair
+        """
+        return a dictionary of all the nodes connected from node_id , each node is represented using a pair
         (other_node_id, weight)
         """
         if id1 not in self.graph_edges_out.keys():
@@ -198,6 +231,10 @@ class DiGraph(GraphInterface):
         return dict(self.graph_nodes)
 
     def __str__(self) -> str:
+        """
+        @return: str, the information about the graph as a string , contain number of edges and nodes
+        and print for each node the edges that go out from it
+        """
         graph_str = "graph details: \n"
         graph_str = graph_str + "number of nodes: " + str(len(self.graph_nodes)) + "\n"
         graph_str = graph_str + "number of edges: " + str(self.edge_counter) + "\n"
@@ -211,6 +248,10 @@ class DiGraph(GraphInterface):
         return graph_str
 
     def __repr__(self) -> str:
+        """
+        @return: str, the information about the graph as a string , contain number of edges and nodes
+        and print for each node the edges that go out from it
+        """
         graph_str = "graph details: \n"
         graph_str = graph_str + "number of nodes: " + str(len(self.graph_nodes)) + "\n"
         graph_str = graph_str + "number of edges: " + str(self.edge_counter) + "\n"
@@ -224,10 +265,19 @@ class DiGraph(GraphInterface):
         return graph_str
 
     def __eq__(self, other) -> bool:
-        if isinstance(other, DiGraph) is False:
+        """
+        return true or false if the graphs are equal
+        checks the number of edges and vertices.
+        then compare each node and edge in the graphs
+        @return: bool, return if the two graphs are equal
+        @param other: the object to compare with
+        """
+        if isinstance(other, DiGraph) is False:  # check if the other is from object DiGraph
             return False
+        # check number of edges and nodes
         if self.v_size() is not other.v_size() or self.e_size() is not other.e_size():
             return False
+        # go over the nodes and edges and compare each
         for node_id in self.get_all_v().keys():
             if node_id not in other.get_all_v().keys():
                 return False

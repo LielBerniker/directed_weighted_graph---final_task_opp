@@ -4,6 +4,9 @@ from src.NodeGraph import NodeGraph
 
 
 class MyTestCase(unittest.TestCase):
+    """
+    this test check the node key
+    """
     def test_node_key(self):
         node_1 = NodeGraph(0)
         self.assertEqual(0, node_1.getKey())
@@ -11,6 +14,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(1, node_2.getKey())
 
     def test_node_position(self):
+        """
+        this test check the node position
+        """
         node_1 = NodeGraph(0,(534,436,2332))
         self.assertEqual(534, node_1.getPosition()[0])
         self.assertEqual(436, node_1.getPosition()[1])
@@ -21,6 +27,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(5, node_2.getPosition()[2])
 
     def test_node_tag(self):
+        """
+        this test check the node tag
+        """
         node_1 = NodeGraph(0)
         self.assertEqual(-1, node_1.getTag())
         node_1.setTag(45454540)
@@ -31,6 +40,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(node_1.getTag(), node_2.getTag())
 
     def test_node_parent(self):
+        """
+        this test check the node parent
+        """
         node_1 = NodeGraph(0)
         self.assertIsNone(node_1.getParent())
         node_1.setParent(45)
@@ -40,6 +52,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(7, node_2.getParent())
 
     def test_node_information(self):
+        """
+        this test check the node information
+        """
         node_1 = NodeGraph(0)
         self.assertEqual("", node_1.getInfo())
         node_1.setInfo("go on")
@@ -49,6 +64,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual("finish", node_2.getInfo())
 
     def test_node_equal(self):
+        """
+        this test check the node equal function that based on the keys of the nodes
+        """
         node_1 = NodeGraph(0)
         node_2 = NodeGraph(54)
         node_3 = NodeGraph(5)
