@@ -17,11 +17,11 @@ the graph class includes functions such as:
 * get_all_ v - return a dictionary contains all the graph vertices 
 * remove node - remove a vertex from the graph
 * remove edge - remove an edge between two vertices
-* all_in_edges_of_node-returns a dictionary of all nodes connected to the given node.
-* all_out_edeges_of_node-returns a dictionary of all nodes connected from the given node.
+* all_in_edges_of_node - returns a dictionary of all nodes connected to the given node.
+* all_out_edeges_of_node - returns a dictionary of all nodes connected from the given node.
 * e_size - return the number of edges in the graph
-* v_size-returns the number of vertices in the graph
-* get_mc-return the number of changes computed on the graph
+* v_size - returns the number of vertices in the graph
+* get_mc - return the number of changes computed on the graph
  
 ### the graph algorithms :
 the graph algorithms class includes functions such as:
@@ -29,9 +29,9 @@ the graph algorithms class includes functions such as:
 * shortest_Path - returns the distance of the shortest path from one vertex to another and a list with the id of the path vertices.
 * save_from_json- save a graph from the graph algorithms as a Jasonobject
 * load_from_json - load a graph from a Jasonobject to the graph algorithms
-* conected_component-returns a list contains all id of the nodes in the connected component of a given vertex.
-* conected_components-returns a list of all the connected components.
-* plot_graph-plots the graph
+* conected_component - returns a list contains all id of the nodes in the connected component of a given vertex.
+* conected_components  -returns a list of all the connected components.
+* plot_graph  -plots the graph
 
 ### part 3:
 in the paer 3 of the project, we make a comparison between the run times of our python project to a previous java project .and also to networkX graph algorithms.
