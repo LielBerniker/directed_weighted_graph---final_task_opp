@@ -97,9 +97,9 @@ class DiGraph(GraphInterface):
         @return: True if the edge was added successfully, False o.w.
         Note: If the edge already exists or one of the nodes dose not exists the functions will do nothing
         and if the edge already exists but the new edge has different edge ,
-         change the weight and increase the changes in the graph
+         change the weight and increase the changes in the graph changes
         """
-        # cheks in the two nodes in the graph and if the weight is not negative
+        # checks in the two nodes in the graph and if the weight is not negative
         if id1 not in self.graph_nodes.keys() or id2 not in self.graph_nodes.keys():
             return False
         if weight < 0:
